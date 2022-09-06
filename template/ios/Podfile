@@ -1,0 +1,76 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '13.0'
+install! 'cocoapods', :deterministic_uuids => false
+
+$RNFirebaseAsStaticFramework = true
+
+target 'ProjectName' do
+  $static_framework = []
+  rn_maps_path = '../node_modules/react-native-maps'
+
+  config = use_native_modules!
+
+  use_frameworks! :linkage => :static
+
+  # Flags change depending on the env values.
+  flags = get_default_flags()
+
+  use_react_native!(
+      :path => config[:reactNativePath],
+      # Hermes is now enabled by default. Disable by setting this flag to false.
+      # Upcoming versions of React Native may rely on get_default_flags(), but
+      # we make it explicit here to aid in the React Native upgrade process.
+      :hermes_enabled => true,
+      :fabric_enabled => flags[:fabric_enabled],
+      # Enables Flipper.
+      #
+      # Note that if you have use_frameworks! enabled, Flipper will not work and
+      # you should disable the next line.
+      # :flipper_configuration => FlipperConfiguration.enabled(["Debug"], { 'Flipper' => '0.162.0' }),
+      # An absolute path to your application root.
+      :app_path => "#{Pod::Config.instance.installation_root}/.."
+    )
+
+  $static_framework += [
+      'react-native-maps',
+      'react-native-google-maps',
+      'Google-Maps-iOS-Utils',
+      'GoogleMaps'
+  ]
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
+
+  pre_install do |installer|
+      Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+          installer.pod_targets.each do |pod|
+              if $static_framework.include?(pod.name)
+                  def pod.build_type;
+                  Pod::BuildType.static_library # >= 1.9
+              end
+          end
+      end
+  end
+
+  post_install do |installer|
+    #  if !ENV['IS_CI']
+    #    flipper_post_install(installer)
+    #  end
+
+   # This is also important AND MUST BE IN SAME ORDER
+    react_native_post_install(installer)
+    installer.pods_project.targets.each do |target|
+      if target.name == 'RCT-Folly'
+        target.build_configurations.each do |config|
+          config.build_settings['HEADER_SEARCH_PATHS'] = "$(inherited) ${PODS_ROOT}/fmt/include"
+        end
+      end
+    end
+    #   __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    end
+  end
+end

@@ -1,0 +1,11 @@
+{
+  "name": "react-native-ts-fb-template",
+  "version": "0.0.1",
+  "description": "React Native Template with TS, Firebase, Google Maps, Navigation, Vector Icons, ...",
+  "repository": "git@github.com:MasoudAlali/react-native-ts-fb-template.git",
+  "author": "Masoud Alali <masoud.alali.94@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "child_process": "^1.0.2"
+  }
+}
