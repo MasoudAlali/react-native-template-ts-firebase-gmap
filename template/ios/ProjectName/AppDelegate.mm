@@ -34,7 +34,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyD7m6XXcudTVaSI2LR_kQaIREHNddkNPi4"];
+  [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];
   [FIRApp configure];
   RCTAppSetupPrepareApp(application);
 

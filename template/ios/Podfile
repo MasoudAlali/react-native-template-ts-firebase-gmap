@@ -17,6 +17,8 @@ target 'ProjectName' do
   # Flags change depending on the env values.
   flags = get_default_flags()
 
+  pod 'react-native-google-maps', :path => rn_maps_path
+
   use_react_native!(
       :path => config[:reactNativePath],
       # Hermes is now enabled by default. Disable by setting this flag to false.
@@ -39,7 +41,6 @@ target 'ProjectName' do
       'Google-Maps-iOS-Utils',
       'GoogleMaps'
   ]
-  pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
 

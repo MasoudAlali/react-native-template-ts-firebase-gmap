@@ -60,16 +60,7 @@
             ReferencedContainer = "container:ProjectName.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-FIRDebugEnabled"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "FIRDebugEnabled"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
+      <CommandLineArguments></CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
