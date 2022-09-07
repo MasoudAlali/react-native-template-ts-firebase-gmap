@@ -18,10 +18,10 @@ export const LogKeys: {
 };
 
 class Logger {
-	private _console: typeof global.console;
+	#_console: typeof global.console;
 
 	constructor() {
-		this._console = console;
+		this.#_console = console;
 	}
 
 	hiddenLogs: StringDictValue<boolean> = {
@@ -35,25 +35,25 @@ class Logger {
 	log(key: LogTypes, ...messages: any) {
 		if (this.hiddenLogs[key]) return;
 
-		this._console.log(key, ...messages);
+		this.#_console.log(key, ...messages);
 	}
 
 	warn(key: LogTypes, ...messages: any) {
 		if (this.hiddenLogs[key]) return;
 
-		this._console.warn(key, ...messages);
+		this.#_console.warn(key, ...messages);
 	}
 
 	info(key: LogTypes, ...messages: any) {
 		if (this.hiddenLogs[key]) return;
 
-		this._console.info(key, ...messages);
+		this.#_console.info(key, ...messages);
 	}
 
 	error(key: LogTypes, ...messages: any) {
 		if (this.hiddenLogs[key]) return;
 
-		this._console.error(key, ...messages);
+		this.#_console.error(key, ...messages);
 
 		(messages || []).map((i: any) => {
 			if (i instanceof Error) {
@@ -63,39 +63,39 @@ class Logger {
 	}
 
 	assert(value?: any, ...messages: any) {
-		this._console.assert(value, ...messages);
+		this.#_console.assert(value, ...messages);
 	}
 
 	trace(key: LogTypes, ...messages: any) {
 		if (this.hiddenLogs[key]) return;
 
-		this._console.trace(key, ...messages);
+		this.#_console.trace(key, ...messages);
 	}
 
 	debug(key: LogTypes, ...messages: any) {
 		if (this.hiddenLogs[key]) return;
 
-		this._console.debug(key, ...messages);
+		this.#_console.debug(key, ...messages);
 	}
 
 	clear() {
-		this._console.clear();
+		this.#_console.clear();
 	}
 
 	table(...data: any[]) {
-		this._console.table(...data);
+		this.#_console.table(...data);
 	}
 
 	groupCollapsed(label?: string) {
-		this._console.groupCollapsed(label);
+		this.#_console.groupCollapsed(label);
 	}
 
 	groupEnd() {
-		this._console.groupEnd();
+		this.#_console.groupEnd();
 	}
 
 	group(label?: string) {
-		this._console.group(label);
+		this.#_console.group(label);
 	}
 }
 

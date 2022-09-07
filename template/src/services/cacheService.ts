@@ -2,6 +2,7 @@ import StorageService from "./storageService";
 import qs from "qs";
 import { Nullable, StringDictValue } from "../ts/global";
 import Logger, { LogKeys } from "./logger";
+import { Minute } from "../config/timeConfig";
 
 class CacheService {
 	#data: Nullable<StringDictValue<any>> = null;
@@ -15,7 +16,7 @@ class CacheService {
 		this.#data = d || {};
 	}
 
-	async save(key: string, content: any, expireIn: number = 5 * 60) {
+	async save(key: string, content: any, expireIn: number = 5 * Minute) {
 		Logger.log(LogKeys.Cache, "Saving ", key, expireIn);
 
 		if (!this.#data) await this.#init();
@@ -54,7 +55,7 @@ class CacheService {
 		StorageService.set("@cache", this.#data);
 	}
 
-	remove(key: string) {
+	async remove(key: string) {
 		delete this.#data?.[key];
 		return this.#persist();
 	}

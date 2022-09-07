@@ -13,7 +13,6 @@ import {
 } from "redux-persist";
 import { configureStore } from "@reduxjs/toolkit";
 import user from "./user";
-import general from "./general";
 
 const reducers = combineReducers({
 	user,

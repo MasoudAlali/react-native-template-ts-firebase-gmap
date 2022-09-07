@@ -1,60 +1,55 @@
 import { AxiosError } from "axios";
 import ToastService from "./toastService";
 
+export interface ErrorResponseType {
+	error: string;
+}
+
 class ErrorHandler {
-	messages: any[];
+	#messages: any[] = [];
 
-	debounce: number;
+	debounce: number = 15000;
 
-	filteredMessages: string[];
+	filteredMessages: string[] = [];
 
-	messagesFilter: string[];
+	messagesFilter: string[] = [];
 
 	constructor() {
-		this.messages = [];
-		this.debounce = 15000;
-		this.filteredMessages = [];
-		this.messagesFilter = [];
-
-		this.initIntervals();
+		this.#initIntervals();
 	}
 
-	purgeOldMessages = () => {
-		this.messages = this.messages.filter((i) => i.expiresIn > Date.now());
+	#purgeOldMessages = () => {
+		this.#messages = this.#messages.filter((i) => i.expiresIn > Date.now());
 	};
 
-	initIntervals = () => {
-		setInterval(this.purgeOldMessages, this.debounce);
+	#initIntervals = () => {
+		setInterval(this.#purgeOldMessages, this.debounce);
 	};
 
-	handleError = (errorMessage: string, forceShow: boolean = false) => {
+	handleMessage = (errorMessage: string, forceShow: boolean = false) => {
 		if (forceShow) return ToastService.showMessage("error", errorMessage);
 
 		const shouldShow =
 			!this.filteredMessages.includes(errorMessage) &&
-			!this.messages.some((i) => i.message === errorMessage) &&
+			!this.#messages.some((i) => i.message === errorMessage) &&
 			!this.messagesFilter.some((i) => errorMessage.includes(i));
 
 		if (!shouldShow) return null;
 
-		this.messages.push({
+		this.#messages.push({
 			message: errorMessage,
 			expiresIn: Date.now() + this.debounce,
 		});
 
 		return ToastService.showMessage("error", errorMessage);
 	};
+
+	handleError(error: AxiosError<ErrorResponseType> | Error, forceShow: boolean = false) {
+
+		let message = error.response?.data?.error || error.message;
+
+		if (message) this.handleMessage(message, forceShow);
+	}
 }
 
-export const errorHandler = new ErrorHandler();
-
-export interface ErrorResponseType {
-	error: string;
-}
-
-export default function errorHandling(error: AxiosError<ErrorResponseType>, forceShow: boolean = false) {
-
-	let message = error.response?.data?.error || error.message;
-
-	if (message) errorHandler.handleError(message, forceShow);
-}
+export default new ErrorHandler();

@@ -1,4 +1,8 @@
-export type Nullable<T> = T | null | undefined;
+type Nullable<T> = T | null | undefined;
+
+type StringDictValue<X> = Record<string, X>;
+
+type NumericDictValue<X> = Record<number, X>;
 
 declare global {
 	namespace NodeJS {
@@ -6,33 +10,6 @@ declare global {
 			NODE_ENV: "development" | "production";
 		}
 	}
-}
-
-export interface Console {
-	error(message?: any, ...optionalParams: any[]): void;
-
-	info(message?: any, ...optionalParams: any[]): void;
-
-	log(message?: any, ...optionalParams: any[]): void;
-
-	warn(message?: any, ...optionalParams: any[]): void;
-
-	trace(message?: any, ...optionalParams: any[]): void;
-
-	debug(message?: any, ...optionalParams: any[]): void;
-
-	table(...data: any[]): void;
-
-	groupCollapsed(label?: string): void;
-
-	groupEnd(): void;
-
-	group(label?: string): void;
-
-	/**
-	 * @deprecated Use LogBox.ignoreLogs(patterns) instead
-	 */
-	ignoredYellowBox: string[];
 }
 
 declare module "axios" {
@@ -45,20 +22,4 @@ declare module "axios" {
 	interface AxiosResponse {
 		__cached?: boolean;
 	}
-}
-
-interface StringDictValue<X> {
-	[key: string]: X;
-}
-
-interface NumericDictValue<X> {
-	[key: number]: X;
-}
-
-interface PaginationResult<X> {
-	totalItems: number;
-	totalPages: number;
-	pageSize: number;
-	page: number;
-	items: X[];
 }

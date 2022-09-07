@@ -1,11 +1,11 @@
 import axios, { AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponse, AxiosResponseHeaders } from "axios";
 import { baseApiUrl } from "../config/urlConfigs";
 import EventEmitter from "./eventEmitter";
-import errorHandling, { ErrorResponseType } from "./errorHandler";
 import AuthRequests from "../api/authRequests";
 import AuthService from "./authService";
 import CacheService from "./cacheService";
 import Logger, { LogKeys } from "./logger";
+import ErrorHandler, { ErrorResponseType } from "./errorHandler";
 
 const axiosInstance = axios.create({
 	baseURL: baseApiUrl,
@@ -83,7 +83,7 @@ axiosInstance.interceptors.response.use(
 			}
 		}
 		if (error?.response?.status !== 401) {
-			errorHandling(
+			ErrorHandler.handleError(
 				error as AxiosError<ErrorResponseType>,
 				[ "post", "delete", "patch" ].includes(error?.config?.method || "get"),
 			);
