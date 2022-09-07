@@ -1,6 +1,8 @@
-##### Auth Service
+### Auth Service
 This service is responsible for doing normal auth functionalities in term of persisting data and accessing them, this service mainly will be manipulated by AuthRequests<br/>
 it will subscribe and dispatch on `user reducer`
+
+#### Methods:
 
   ```typescript 
 loginUser({ token: string, refreshToken: string }) => void

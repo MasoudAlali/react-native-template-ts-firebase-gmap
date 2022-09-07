@@ -1,7 +1,7 @@
 # react-native-ts-fb-template
 
 ### [React Native](https://reactnative.dev/) Template (RN 0.69.5)
-* TypeScript
+* [TypeScript](https://www.typescriptlang.org/)
 * [React Navigation](https://reactnavigation.org/)
   * [Bottom Tab Bar Navigation](https://reactnavigation.org/docs/bottom-tab-navigator/)
   * [Stack Navigation](https://reactnavigation.org/docs/stack-navigator/)
@@ -15,15 +15,15 @@
   * [MaterialCommunityIcons.ttf](https://materialdesignicons.com/)
   * [FontAwesome.ttf](https://fontawesome.com/icons)
 * [Redux](https://redux.js.org/)
-  * General Reducer (Currently Handling Modals)
   * User Reducer (Handling Login Status and Profile Data)
 * [Redux Toolkit](https://redux.js.org/redux-toolkit/overview)
+* [Redux Persist](https://github.com/rt2zz/redux-persist#readme)
 * Basic Services:
-  * Analytics Service (Firebase Wrapper)
+  * Analytics Service (Firebase wrapper)
   * Auth Service
   * Cache Service (which already integrated to Axios)
   * Error Handler
-  * Logger
+  * Logger (console wrapper)
   * Event Emitter
   * Storage Service (Async Storage Wrapper)
   * Toast Service (Using react-native-simple-toast)
@@ -59,6 +59,8 @@ you can add or remove any module based on RN Firebase documentation
 * For adding or removing fonts just change `[85] iconFontNames` in `android/app/build.gradle`
 
 ### Provided Services
+Keep in mind that all services are `singleton`, so default exports are instance of class
+
 ##### Analytics Service
 The idea is to wrap firebase/analytics in this service to have other trackers more easy to integrate <br/>
 so basically you can implement and add your functions to it, currently we have `logLogin` and `logScreenView` functions 
@@ -68,3 +70,34 @@ This service is responsible for doing normal auth functionalities in term of per
 it will subscribe and dispatch on `user reducer`
 
 * ###### for more information about AuthService module and how to use it refer to [AuthService doc](./docs/AuthService.md)
+
+##### Cache Service
+This service is responsible for maintain requests cache data which are handled by axios interceptors and persist them using StorageService<br/>
+requests with `get` method will be persisted with `url + params` key and value of whole response with some expire time
+
+* ###### for more information about CacheService module and how to use it refer to [CacheService doc](./docs/CacheService.md)
+
+##### Error Handler
+This service is responsible for showing errors to user using `ToastService.showMessage` with `error` type<br/>
+
+* This module will export `errorHandling` function as default which need `error` as argument, you should just pass your axios error response to it `AxiosError<ErrorResponseType>`
+* It has some kind of debounce and deduplication, which will filter duplicate messages in given time frame
+* You can specify some filtering to prevent some messages to be shown to user 
+
+but for sure you can use base `ErrorHandler` class separately
+
+* ###### for more information about ErrorHandler module and how to use it refer to [ErrorHandler doc](./docs/ErrorHandler.md)
+
+##### Event Emitter
+This service is very simple connection between listeners and emitters, listeners listen on specific eventName and emitters will emit on that specific eventName and pass the params
+
+so it's a helper to call whatever listener in anywhere from anywhere you want
+
+for example if you want to show a `Modal` which is used in `App.tsx`, you can emit `EventEmitter.Events.General.ShowModal()` and that's it, `Modal` Component will be called by it's listener
+
+* ###### for more information about EventEmitter module and how to use it refer to [EventEmitter](./docs/EventEmitter.md)
+
+##### Logger
+This service is easily a wrapper for console with all those functions, the only difference is that first argument of functions will be a key which is defined in same module, and you can enable or disable that logs
+
+* ###### for more information about Logger module and how to use it refer to [Logger](./docs/Logger.md)

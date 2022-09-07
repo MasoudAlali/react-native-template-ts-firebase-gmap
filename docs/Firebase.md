@@ -1,4 +1,6 @@
-#### Configure [Firebase](https://rnfirebase.io/)
+### [Firebase](https://rnfirebase.io/)
+
+##### Configure Firebase
 * Configure your project in [Firebase Console](https://console.firebase.google.com)
 * Download your `GoogleService-Info.plist` and replace (overwrite) it in `ios` directory
 * Download your `google-services.json` and replace (overwrite) it in `android/app` directory

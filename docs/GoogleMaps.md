@@ -1,4 +1,6 @@
-#### Configure [Google Maps](https://github.com/react-native-maps/react-native-maps)
+#### [Google Maps](https://github.com/react-native-maps/react-native-maps)
+
+##### Configure Google Maps
 * Configure your project in [Google Cloud Panel](https://cloud.google.com)
     * Be sure that you enable Android Maps SDK and iOS Maps SDK
 * Replace retrieved token and replace to below files:
