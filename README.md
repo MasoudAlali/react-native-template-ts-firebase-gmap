@@ -23,18 +23,18 @@
     * User Reducer (Handling Login Status and Profile Data)
 * [Redux Toolkit](https://redux.js.org/redux-toolkit/overview)
 * [Redux Persist](https://github.com/rt2zz/redux-persist#readme)
-* Basic Services:
-    * Analytics Service (Firebase analytics wrapper)
-    * Notification Service (Firebase messaging wrapper)
-    * Auth Service
-    * Cache Service (which already integrated to Axios)
-    * Error Handler
-    * Logger (console wrapper)
-    * Event Emitter
-    * Storage Service (Async Storage Wrapper)
-    * Toast Service (Using react-native-simple-toast)
-    * UI Service (Currently Handling Modals)
-    * Axios api with interceptors
+* [Basic Services](#provided-services):
+    * [Analytics Service](#analytics-service) (Firebase analytics wrapper)
+    * [Notification Service](#notification-service) (Firebase messaging wrapper)
+    * [Auth Service](#auth-service)
+    * [Cache Service](#cache-service) (which already integrated to Axios)
+    * [Error Handler](#error-handler)
+    * [Logger](#logger) (console wrapper)
+    * [Event Emitter](#event-emitter)
+    * [Storage Service](#storage-service) (Async Storage Wrapper)
+    * [Toast Service](#toast-service) (Using react-native-simple-toast)
+    * [UI Service](#ui-service) (Currently Handling Modals)
+    * [Axios api](#api-helper) with interceptors
 
 ### Instructions
 
@@ -61,11 +61,17 @@ you can add or remove any module based on RN Firebase documentation
     * [28] "GOOGLE_MAPS_API_KEY" in `android/src/main/AndroidManifest.xml`
     * [37] "GOOGLE_MAPS_API_KEY" in `ios/[project-name]/AppDelegate.mm`
 
-* ###### for more information about google maps module and how to remove it refer to [GoogleMaps Doc](./docs/GoogleMaps.md)
+* ###### for more information about Google Maps module and how to remove it refer to [GoogleMaps Doc](./docs/GoogleMaps.md)
 
 #### Configure [Vector Icons](https://github.com/oblador/react-native-vector-icons)
 
 * For adding or removing fonts just change `[85] iconFontNames` in `android/app/build.gradle`
+
+#### Configure endpoints
+
+* To use auth service requests (`login`, `refreshToken`) you can set your endpoints in 
+`config/urlConfigs.ts` -> `apiEndpoints` and set `baseApiUrl`
+* To handle your own logic of `login` and `refreshToken` you can modify methods in `api/authRequests.ts`
 
 ### Provided Services
 
@@ -174,3 +180,12 @@ for example currently we are using it for showing `Modals`, and it simply will e
 
 * `showModal` which will receive `ShowModalParams` and emit related event with params
 * `hideModals` which will emit related event to hide all Modals
+
+
+##### API helper
+
+Currently basic `Axios` setup is done in `api.ts`
+* Initialize based on `baseApiUrl` which is defined in `config/urlConfigs`
+* `Request Interceptor` which will handle usage or `Cache` and `Authorization Token`
+* `Response Interceptor` which will handle error codes (`422` for `refreshToken`) and toast errors
+* All `get` requests will be wrapped in `requestAnimationFrame` to prevent slowing down application on `useEffect` requests
