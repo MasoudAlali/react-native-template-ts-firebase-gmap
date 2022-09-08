@@ -16,11 +16,6 @@ interface Props extends CompositeScreenProps<StackScreenProps<RootStackParamList
 
 ##### Structure
 
-* `Application.tsx` which is responsible to render:
-    * `SafeAreaView` (to handle safe area view in devices with notch, ...)
-    * `NavigationContainer`
-    * `StatusBar` (you can modify based on your application theme)
-    * `MainStack` which contains `TabNavigator` and other pages
 * `Root.tsx` which contain some `refs` and `methods` to use navigations more easily
     * `navigationRef` is default `Navigator` and base to call methods
     * `navigateBack` handles navigation to previous screen
