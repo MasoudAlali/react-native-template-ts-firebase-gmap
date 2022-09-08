@@ -1,23 +1,23 @@
 import React from "react";
-import { StyleSheet, Text, View, ViewStyle } from "react-native";
+import { GestureResponderEvent, StyleSheet, Text, View, ViewStyle, StyleProp } from "react-native";
 import { Colors, FontSizes, LineHeights, Margins } from "../../config/ui";
 
 interface Props {
-	direction: "center" | "right" | "left";
+	alignment: "center" | "right" | "left";
 	color?: string;
 	lineColor?: string;
 	hasLine?: boolean;
-	containerStyle?: ViewStyle;
+	containerStyle?: StyleProp<ViewStyle>;
 	label: string;
-	labelStyle?: ViewStyle;
-	onLabelPress?: any;
+	labelStyle?: StyleProp<ViewStyle>;
+	onLabelPress?: ((event: GestureResponderEvent) => void);
 }
 
 const LinedText = ({
-	direction,
+  alignment,
 	color = Colors.text_200,
 	lineColor = Colors.border,
-	hasLine,
+	hasLine = false,
 	containerStyle,
 	labelStyle,
 	label,
@@ -30,21 +30,21 @@ const LinedText = ({
 		} ];
 	return (
 		<View style={[ styles.container, containerStyle ]}>
-			{hasLine && [ "center", "right" ].includes(direction) ? <View style={lineStyles}/> : null}
+			{hasLine && [ "center", "right" ].includes(alignment) ? <View style={lineStyles}/> : null}
 			<Text
 				style={[
 					styles.label,
 					labelStyle,
 					{
 						color,
-						marginRight: direction === "right" ? 0 : Margins.smaller,
-						marginLeft: direction === "left" ? 0 : Margins.smaller
+						marginRight: alignment === "right" ? 0 : Margins.smaller,
+						marginLeft: alignment === "left" ? 0 : Margins.smaller
 					},
 				]}
 				onPress={onLabelPress}>
 				{label}
 			</Text>
-			{hasLine && [ "center", "left" ].includes(direction) ? <View style={lineStyles}/> : null}
+			{hasLine && [ "center", "left" ].includes(alignment) ? <View style={lineStyles}/> : null}
 		</View>
 	);
 };

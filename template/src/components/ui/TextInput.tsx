@@ -18,9 +18,6 @@ interface Props extends TextInputProps {
 	containerStyle?: StyleProp<ViewStyle>;
 	labelStyle?: StyleProp<TextStyle>;
 	disabled?: boolean;
-	resizeOnChange?: boolean;
-	maxHeight?: number;
-	minHeight?: number;
 	iconName?: string;
 	iconFamily?: IconFamilies;
 	iconSize?: number;
@@ -30,9 +27,8 @@ interface Props extends TextInputProps {
 const TextInput = ({
 	label,
 	containerStyle,
-	resizeOnChange = false,
 	labelStyle,
-	disabled,
+	disabled = false,
 	autoCapitalize = "none",
 	style,
 	iconSize,

@@ -3,7 +3,7 @@ import MiIcon from "react-native-vector-icons/MaterialIcons";
 import FaIcon from "react-native-vector-icons/FontAwesome";
 import MdiIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Colors, IconSizes } from "../../config/ui";
-import { ViewStyle } from "react-native";
+import { StyleProp, ViewStyle } from "react-native";
 
 export type IconFamilies = "mdi" | "fa" | "mi";
 
@@ -12,7 +12,7 @@ interface Props {
 	size?: number;
 	name: string;
 	color?: string;
-	style?: ViewStyle;
+	style?: StyleProp<ViewStyle>;
 }
 
 const Icon = ({ size = IconSizes.small, name, color = Colors.black, family = "mdi", style }: Props) => {

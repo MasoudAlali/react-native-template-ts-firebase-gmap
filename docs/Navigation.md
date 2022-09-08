@@ -7,6 +7,13 @@ If user is `LoggedIn`, `TabNabigator` will be default screen, else `Login` page 
 * you should implement `LoginPage` for your application, and update store `isUserLoggedIn` value
 * whole `Navigation` files are stored in `src/navigators`
 
+***
+* To typescript typing for your screen components you can define props like this:
+```typescript
+interface Props extends CompositeScreenProps<StackScreenProps<RootStackParamList, "Sample">, any> {}
+```
+***
+
 ##### Structure
 
 * `Application.tsx` which is responsible to render:
