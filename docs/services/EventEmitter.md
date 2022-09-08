@@ -34,8 +34,9 @@ will emit some event by `eventName` and call all listeners assigned to that `eve
 #### Example
 
 * Listener
+
 ```typescript jsx
-import EventEmitter from "./eventEmitter";
+import EventEmitter from "./EventEmitter";
 
 const Modal = () => {
   const showModal = () => {
@@ -43,7 +44,7 @@ const Modal = () => {
 
   useEffect(() => {
     const listener = EventEmitter.addListener(EventEmitter.Events.General.ShowModal(), showModal);
-    
+
     return () => listener();
   }, [])
 }
@@ -52,13 +53,14 @@ const Modal = () => {
 * Emitter
 
 ```typescript jsx
-import EventEmitter from "./eventEmitter";
+import EventEmitter from "./EventEmitter";
 
 const DeleteButton = () => {
   const onPress = () => {
     EventEmitter.emit(EventEmitter.Events.General.ShowModal(), {
       title: "Are you sure",
-      onAction: () => {}
+      onAction: () => {
+      }
     })
   }
 }

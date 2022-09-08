@@ -18,7 +18,6 @@ export type RootStackParamList = {
 };
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
-// @refresh reset
 
 const TabStack = function () {
 	return (
@@ -31,7 +30,7 @@ const TabStack = function () {
 			<Tab.Screen
 				name={"Hello"}
 				options={{
-					tabBarIcon: ({focused}) => (<Icon name={"message"} size={24} color={focused ? Colors.primary : Colors.primary_200}/>)
+					tabBarIcon: ({focused}: {focused: boolean}) => (<Icon name={"message"} size={24} color={focused ? Colors.primary : Colors.primary_200}/>)
 				}}
 				component={Hello}
 			/>
@@ -43,8 +42,6 @@ const MainStackNavigator = createStackNavigator();
 
 export const MainStack = () => {
 	const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-
-	console.log(isLoggedIn);
 
 	return (
 		<MainStackNavigator.Navigator

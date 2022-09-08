@@ -4,10 +4,6 @@ import AuthService from "../services/authService";
 import { AxiosError } from "axios";
 
 class AuthRequests {
-	getCaptcha() {
-		return api.get(apiEndpoints.auth.getCaptcha);
-	}
-
 	async login({
 		username,
 		password,

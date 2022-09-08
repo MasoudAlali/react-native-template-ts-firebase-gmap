@@ -1,11 +1,11 @@
 export type WeekDayName =
-	| "Saturday"
-	| "Sunday"
-	| "Monday"
-	| "Tuesday"
-	| "Wednesday"
-	| "Thursday"
-	| "Friday"
+	| "saturday"
+	| "sunday"
+	| "monday"
+	| "tuesday"
+	| "wednesday"
+	| "thursday"
+	| "friday"
 
 export type MonthName =
 	| "january"

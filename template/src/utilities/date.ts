@@ -1,14 +1,14 @@
 import { MonthName, WeekDayName } from "../ts/objects";
 import moment from "moment";
 
-export const weekDayNames = [
-	"Monday",
-	"Tuesday",
-	"Wednesday",
-	"Thursday",
-	"Friday",
-	"Saturday",
-	"Sunday",
+export const WeekDayNames = [
+	"monday",
+	"tuesday",
+	"wednesday",
+	"thursday",
+	"friday",
+	"saturday",
+	"sunday",
 ] as WeekDayName[];
 
 export const MonthNames = [
@@ -44,14 +44,7 @@ export const convertDateTimeToDate = (datetime?: string | Date, short: boolean =
 		: `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).substr(-2)}-${("0" + date.getDate()).substr(-2)}`;
 };
 
-export const convertDateTimeToLongDateString = (datetime: Date | string, short: boolean = false, hasYear = true) => {
-	if (!datetime) return "-";
-
-	const date = moment(new Date(datetime));
-	return date.format("dddd, MMMM DD");
-};
-
-export const getTimeDiffString = (time: string | Date) => {
+export const getTimeDiff = (time: Date | string) => {
 	const date = new Date(time);
 	const now = new Date();
 	const secondsDiff = (new Date().getTime() - date.getTime()) / 1000;

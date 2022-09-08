@@ -16,7 +16,6 @@ import user from "./user";
 
 const reducers = combineReducers({
 	user,
-	general
 });
 
 const persistConfig: PersistConfig<RootState> = {

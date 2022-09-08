@@ -29,18 +29,18 @@ export const user = createSlice({
 	name: "user",
 	initialState,
 	reducers: {
-		userLoggedIn: (state, action: ActionWithPayload<LoginPayload>) => {
+		userLoggedIn: (state: ProfileState, action: ActionWithPayload<LoginPayload>) => {
 			state.isLoggedIn = true;
 			state.token = action.payload.token;
 			state.refreshToken = action.payload.refreshToken;
 		},
-		userLoggedOut: (state) => {
+		userLoggedOut: (state: ProfileState) => {
 			state.isLoggedIn = false;
 			state.token = null;
 			state.refreshToken = null;
 			state.profile = null;
 		},
-		updateUserProfile: (state, action: ActionWithPayload<ProfileInfo>) => {
+		updateUserProfile: (state: ProfileState, action: ActionWithPayload<ProfileInfo>) => {
 			state.profile = action.payload;
 		}
 	}
