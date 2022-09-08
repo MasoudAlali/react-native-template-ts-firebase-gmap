@@ -23,6 +23,7 @@
     * [User Reducer](./docs/Stores.md) (Handling Login Status and Profile Data)
 * [Redux Toolkit](https://redux.js.org/redux-toolkit/overview)
 * [Redux Persist](https://github.com/rt2zz/redux-persist#readme)
+* [Patch Package](https://github.com/ds300/patch-package)
 * [Basic Services](#provided-services):
     * [Analytics Service](./docs/Services.md#analytics-service) (Firebase analytics wrapper)
     * [Notification Service](./docs/Services.md#notification-service) (Firebase messaging wrapper)

@@ -9,7 +9,8 @@ class EventEmitter {
 		},
 		Firebase: {
 			NotificationAppOpen: () => "firebase-notification-app-open",
-			Message: () => "firebase-message"
+			Message: () => "firebase-message",
+			TokenRefresh: () => "firebase-token-refresh",
 		}
 	};
 

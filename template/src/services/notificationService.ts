@@ -2,9 +2,10 @@ import messaging, { FirebaseMessagingTypes } from "@react-native-firebase/messag
 import EventEmitter from "./eventEmitter";
 
 class NotificationService {
-	eminEvents() {
+	enableEmitEvents() {
 		this.onNotificationOpenedApp(this.#onNotificationOpenedApp);
 		this.onMessage(this.#onMessage);
+		this.onTokenRefresh(this.#onTokenRefresh);
 	}
 
 	getInitialNotification(): Promise<FirebaseMessagingTypes.RemoteMessage | null> {
@@ -19,12 +20,20 @@ class NotificationService {
 		messaging().onMessage(listener);
 	}
 
+	onTokenRefresh(listener: (token: string) => any) {
+		messaging().onTokenRefresh(listener);
+	}
+
 	#onNotificationOpenedApp(message: FirebaseMessagingTypes.RemoteMessage) {
 		EventEmitter.emit(EventEmitter.Events.Firebase.NotificationAppOpen(), message);
 	}
 
 	#onMessage(message: FirebaseMessagingTypes.RemoteMessage) {
 		EventEmitter.emit(EventEmitter.Events.Firebase.Message(), message);
+	}
+
+	#onTokenRefresh(token: string) {
+		EventEmitter.emit(EventEmitter.Events.Firebase.TokenRefresh(), token);
 	}
 
 	setBackgroundMessageHandler(handler: (message: FirebaseMessagingTypes.RemoteMessage) => Promise<any>) {
@@ -39,7 +48,7 @@ class NotificationService {
 		return messaging().getToken();
 	}
 
-	async requestUserPermission() {
+	async requestUserPermission(): Promise<boolean> {
 		const authStatus = await messaging().requestPermission();
 		return (
 			authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
