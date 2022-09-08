@@ -1,10 +1,9 @@
 import SimpleToast from "react-native-simple-toast";
 
 type ToastTypes = "error" | "success" | "danger" | "info"
-type ToastDurations = number;
 
 class ToastService {
-	showMessage(type: ToastTypes = "info", message: string, duration: ToastDurations = SimpleToast.SHORT) {
+	showMessage(type: ToastTypes = "info", message: string, duration: number = SimpleToast.SHORT) {
 		SimpleToast.show(message, duration);
 	}
 }

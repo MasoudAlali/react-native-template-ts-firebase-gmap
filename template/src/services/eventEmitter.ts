@@ -7,6 +7,10 @@ class EventEmitter {
 			ShowModal: () => "general-show-modal",
 			HideModal: () => "general-hide-modal",
 		},
+		Firebase: {
+			NotificationAppOpen: () => "firebase-notification-app-open",
+			Message: () => "firebase-message"
+		}
 	};
 
 	#events: StringDictValue<Function[]> = {};

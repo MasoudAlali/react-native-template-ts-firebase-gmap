@@ -5,11 +5,11 @@ class StorageService {
 		return JSON.parse(await AsyncStorage.getItem(key) || JSON.stringify(defaultValue));
 	}
 
-	set(key: string, value: any) {
+	async set(key: string, value: any) {
 		return AsyncStorage.setItem(key, JSON.stringify(value));
 	}
 
-	remove(key: string) {
+	async remove(key: string) {
 		return AsyncStorage.removeItem(key);
 	}
 }

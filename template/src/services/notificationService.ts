@@ -1,16 +1,42 @@
-import messaging from "@react-native-firebase/messaging";
+import messaging, { FirebaseMessagingTypes } from "@react-native-firebase/messaging";
+import EventEmitter from "./eventEmitter";
 
 class NotificationService {
-	constructor() {
-		this.#init();
+	eminEvents() {
+		this.onNotificationOpenedApp(this.#onNotificationOpenedApp);
+		this.onMessage(this.#onMessage);
 	}
 
-	async #init() {
-		messaging().onNotificationOpenedApp(() => {
-		});
-		messaging().onMessage(async () => {
-		});
-		// messaging().setBackgroundMessageHandler(async () => {});
+	getInitialNotification(): Promise<FirebaseMessagingTypes.RemoteMessage | null> {
+		return messaging().getInitialNotification();
+	}
+
+	onNotificationOpenedApp(listener: (message: FirebaseMessagingTypes.RemoteMessage) => any) {
+		messaging().onNotificationOpenedApp(listener);
+	}
+
+	onMessage(listener: (message: FirebaseMessagingTypes.RemoteMessage) => any) {
+		messaging().onMessage(listener);
+	}
+
+	#onNotificationOpenedApp(message: FirebaseMessagingTypes.RemoteMessage) {
+		EventEmitter.emit(EventEmitter.Events.Firebase.NotificationAppOpen(), message);
+	}
+
+	#onMessage(message: FirebaseMessagingTypes.RemoteMessage) {
+		EventEmitter.emit(EventEmitter.Events.Firebase.Message(), message);
+	}
+
+	setBackgroundMessageHandler(handler: (message: FirebaseMessagingTypes.RemoteMessage) => Promise<any>) {
+		messaging().setBackgroundMessageHandler(handler);
+	}
+
+	getAPNSToken() : Promise<string | null> {
+		return messaging().getAPNSToken();
+	}
+
+	getToken(): Promise<string> {
+		return messaging().getToken();
 	}
 
 	async requestUserPermission() {
