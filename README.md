@@ -85,7 +85,7 @@ you can add or remove any module based on RN Firebase documentation
 
 #### Configure endpoints
 
-* To use auth service requests (`login`, `refreshToken`) you can set your endpoints in 
+* To use auth service requests (`login`, `refreshToken`)[^1] you can set your endpoints in 
 `config/urlConfigs.ts` -> `apiEndpoints` and set `baseApiUrl`
 * To handle your own logic of `login` and `refreshToken` you can modify methods in `api/authRequests.ts`
 
@@ -98,3 +98,5 @@ Keep in mind that all services are `singleton`, so default exports are instance 
   something, just change this wrapper service and that's it
 
 ##### For read more about services and details please refer to [Services](./docs/Services.md)
+
+[^1]: It's simple username, password, captcha values and refreshToken is simply sending token and refreshToken to renew token
