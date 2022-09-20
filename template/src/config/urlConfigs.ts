@@ -1,5 +1,5 @@
 export const baseApiUrl =
-	process.env.NODE_ENV === "development" ? "https://maham-api.hectora.app" : "https://maham-api.hectora.app";
+	process.env.NODE_ENV === "development" ? "" : "";
 
 export const apiEndpoints = {
 	auth: {
