@@ -1,15 +1,22 @@
-import React, { useCallback, useEffect } from "react";
-import { Linking, Platform, SafeAreaView as RNSafeAreaView, StatusBar, StyleSheet } from "react-native";
-import { persistor, store } from "./store";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
-import { navigationRef } from "./navigators/Root";
-import { MainStack } from "./navigators/Main";
+import React, {useCallback, useEffect} from "react";
+import {
+	KeyboardAvoidingView,
+	Linking,
+	Platform,
+	SafeAreaView as RNSafeAreaView,
+	StatusBar,
+	StyleSheet
+} from "react-native";
+import {persistor, store} from "./store";
+import {Provider} from "react-redux";
+import {PersistGate} from "redux-persist/integration/react";
+import {SafeAreaView} from "react-native-safe-area-context";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {NavigationContainer} from "@react-navigation/native";
+import {navigationRef} from "./navigators/Root";
+import {MainStack} from "./navigators/Main";
 import Modal from "./components/ui/Modal";
-import Logger, { LogKeys } from "./services/logger";
+import Logger, {LogKeys} from "./services/logger";
 import AnalyticService from "./services/analyticService";
 
 const SA = Platform.select<any>({
@@ -41,7 +48,7 @@ const App = () => {
 	}, []);
 
 	const handleOpenURL = (event: any) => {
-		Logger.log(LogKeys.Component, { event });
+		Logger.log(LogKeys.Component, {event});
 	};
 
 	return (
@@ -51,7 +58,9 @@ const App = () => {
 					<SA style={styles.mainContainer}>
 						<NavigationContainer ref={navigationRef} onReady={onReady} onStateChange={onStateChange}>
 							<StatusBar barStyle={"light-content"}/>
-							<MainStack/>
+							<KeyboardAvoidingView behavior={"padding"} style={styles.innerContainer}>
+								<MainStack/>
+							</KeyboardAvoidingView>
 						</NavigationContainer>
 					</SA>
 					<Modal/>
@@ -65,6 +74,9 @@ const styles = StyleSheet.create({
 	mainContainer: {
 		flex: 1,
 	},
+	innerContainer: {
+		flex: 1,
+	}
 });
 
 export default App;

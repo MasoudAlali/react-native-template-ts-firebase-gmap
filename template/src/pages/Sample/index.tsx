@@ -9,9 +9,9 @@ interface Props extends CompositeScreenProps<StackScreenProps<RootStackParamList
 }
 
 const Sample = (props: Props) => {
-	return <PageContainer>
-		<Text>{props.route?.params?.title}</Text>
-	</PageContainer>;
+    return <PageContainer>
+        <Text>{props.route?.params?.title}</Text>
+    </PageContainer>;
 };
 
 const styles = StyleSheet.create({});

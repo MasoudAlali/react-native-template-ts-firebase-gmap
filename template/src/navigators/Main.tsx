@@ -1,20 +1,38 @@
-import React, { FunctionComponent } from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+import React, {FunctionComponent} from "react";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {createStackNavigator} from "@react-navigation/stack";
 import EventEmitter from "../services/eventEmitter";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
-import { Colors } from "../config/ui";
+import {useSelector} from "react-redux";
+import {RootState} from "../store";
+import {Colors} from "../config/ui";
 import Sample from "../pages/Sample";
 import Hello from "../pages/Hello";
 import LoginPage from "../pages/Login";
 import Icon from "../components/ui/Icon";
 
 export type RootStackParamList = {
-	Hello: undefined;
-	Sample: {
-		title: string;
+    Hello: undefined;
+    Sample: {
+        title: string;
+    }
+};
+
+const getTabBarIcon = (name: keyof RootStackParamList) => {
+	let iconName: string;
+
+	switch (name) {
+	case "Hello":
+		iconName = "message";
+		break;
+	default:
+		iconName = "question";
 	}
+
+	return ({focused}: { focused: boolean }) =>
+		<Icon
+			name={iconName}
+			size={24}
+			color={focused ? Colors.primary : Colors.primary_200}/>;
 };
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
@@ -30,7 +48,7 @@ const TabStack = function () {
 			<Tab.Screen
 				name={"Hello"}
 				options={{
-					tabBarIcon: ({focused}: {focused: boolean}) => (<Icon name={"message"} size={24} color={focused ? Colors.primary : Colors.primary_200}/>)
+					tabBarIcon: getTabBarIcon("Hello")
 				}}
 				component={Hello}
 			/>
@@ -45,7 +63,6 @@ export const MainStack = () => {
 
 	return (
 		<MainStackNavigator.Navigator
-			initialRouteName={isLoggedIn ? "Main" : "Main"}
 			screenListeners={{
 				blur: () => {
 					EventEmitter.emit("CloseEverything");
@@ -58,24 +75,15 @@ export const MainStack = () => {
 				},
 				presentation: "card",
 			}}>
-			<MainStackNavigator.Screen name={"Main"} component={TabStack}/>
-			<MainStackNavigator.Screen name={"Login"} component={LoginPage}/>
-			<MainStackNavigator.Screen name={"Sample"} component={Sample as FunctionComponent}/>
+			{isLoggedIn ?
+				<>
+					<MainStackNavigator.Screen name={"Main"} component={TabStack}/>
+					<MainStackNavigator.Screen name={"Sample"} component={Sample as FunctionComponent}/>
+				</>
+				: <>
+					<MainStackNavigator.Screen name={"Login"} component={LoginPage}/>
+				</>
+			}
 		</MainStackNavigator.Navigator>
 	);
 };
-
-const RootStackNavigator = createStackNavigator();
-
-const RootStack = () => {
-	return (
-		<RootStackNavigator.Navigator
-			screenOptions={{
-				headerShown: false,
-			}}>
-			<RootStackNavigator.Screen name="Root" component={MainStack}/>
-		</RootStackNavigator.Navigator>
-	);
-};
-
-export default RootStack;
