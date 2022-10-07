@@ -6,7 +6,7 @@ emitters will emit on that specific eventName and pass the params
 so it's a helper to call whatever listener in anywhere from anywhere you want
 
 for example if you want to show a `Modal` which is used in `App.tsx`, you can
-emit `EventEmitter.Events.General.ShowModal()` and that's it, `Modal` Component will be called by it's listener
+emit `EventEmitter.Events.General.ShowModal` and that's it, `Modal` Component will be called by it's listener
 
 #### Fields:
 
@@ -43,7 +43,7 @@ const Modal = () => {
   };
 
   useEffect(() => {
-    const listener = EventEmitter.addListener(EventEmitter.Events.General.ShowModal(), showModal);
+    const listener = EventEmitter.addListener(EventEmitter.Events.General.ShowModal, showModal);
 
     return () => listener();
   }, [])
@@ -57,7 +57,7 @@ import EventEmitter from "./EventEmitter";
 
 const DeleteButton = () => {
   const onPress = () => {
-    EventEmitter.emit(EventEmitter.Events.General.ShowModal(), {
+    EventEmitter.emit(EventEmitter.Events.General.ShowModal, {
       title: "Are you sure",
       onAction: () => {
       }

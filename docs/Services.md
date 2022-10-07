@@ -59,7 +59,7 @@ emitters will emit on that specific eventName and pass the params
 so it's a helper to call whatever listener in anywhere from anywhere you want
 
 for example if you want to show a `Modal` which is used in `App.tsx`, you can
-emit `EventEmitter.Events.General.ShowModal()` and that's it, `Modal` Component will be called by it's listener
+emit `EventEmitter.Events.General.ShowModal` and that's it, `Modal` Component will be called by its listener
 
 * ###### for more information about EventEmitter module and how to use it refer to [EventEmitter](services/EventEmitter.md)
 
