@@ -2,6 +2,17 @@
 
 ### [React Native](https://reactnative.dev/) Template (RN 0.69.5)
 
+Because of some dependency issues in pods, it's always hard and tricky to import Firebase and GoogleMaps and other
+services along together in one app, also configuring Navigation, vector-icons, redux and some helpful services will
+always take time,
+<br/>
+so basically that's why I created this template
+
+***
+##### Feedback and comments are always welcome
+Please don't hesitate to send me comments and feedbacks
+***
+
 * [TypeScript](https://www.typescriptlang.org/)
 * [React Navigation](https://reactnavigation.org/)
     * [Bottom Tab Bar Navigation](https://reactnavigation.org/docs/bottom-tab-navigator/)
@@ -37,20 +48,20 @@
     * [UI Service](./docs/Services.md#ui-service) (Currently Handling Modals)
     * [Axios api](./docs/Services.md#api-helper) with interceptors
 * [Basic Components](./docs/Components.md)
-  * Page Container
-  * Header
-  * Badge
-  * Button
-  * Icon
-  * LinedText
-  * Loading
-  * Modal
-  * Tabs
-  * TextInput
+    * Page Container
+    * Header
+    * Badge
+    * Button
+    * Icon
+    * LinedText
+    * Loading
+    * Modal
+    * Tabs
+    * TextInput
 * [Basic Utilities](./docs/Utilities.md)
-  * Date utilities (using [Moment](https://momentjs.com/))
-  * File Size calculator
-  * String and Currency Helpers
+    * Date utilities (using [Moment](https://momentjs.com/))
+    * File Size calculator
+    * String and Currency Helpers
 
 ### Instructions
 
@@ -85,8 +96,8 @@ you can add or remove any module based on RN Firebase documentation
 
 #### Configure endpoints
 
-* To use auth service requests (`login`, `refreshToken`)[^1] you can set your endpoints in 
-`config/urlConfigs.ts` -> `apiEndpoints` and set `baseApiUrl`
+* To use auth service requests (`login`, `refreshToken`)[^1] you can set your endpoints in
+  `config/urlConfigs.ts` -> `apiEndpoints` and set `baseApiUrl`
 * To handle your own logic of `login` and `refreshToken` you can modify methods in `api/authRequests.ts`
 
 ### Provided Services
@@ -99,4 +110,5 @@ Keep in mind that all services are `singleton`, so default exports are instance 
 
 ##### For read more about services and details please refer to [Services](./docs/Services.md)
 
-[^1]: It's simple username, password, captcha values and refreshToken is simply sending token and refreshToken to renew token
+[^1]: It's simple username, password, captcha values and refreshToken is simply sending token and refreshToken to renew
+token
