@@ -10,7 +10,8 @@ so basically that's why I created this template
 
 ***
 ##### Feedback and comments are always welcome
-Please don't hesitate to send me comments and feedbacks
+Of course, this isn't the perfect structure, but It's inspired by NextJS and recommended typescript structure, which will separate components in terms of features, and root pages with some Navigation (which won't be present in NextJS based on its directory routing), and separating services and have wrappers to handle better future changes in dependencies<br/>
+So Please don't hesitate to send me comments and feedback. we can talk about each part and make it better.
 ***
 
 * [TypeScript](https://www.typescriptlang.org/)
