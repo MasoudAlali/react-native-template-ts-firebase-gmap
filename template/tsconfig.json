@@ -1,33 +1,11 @@
 {
+    "extends": "@tsconfig/react-native/tsconfig.json",
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "esnext",
-        "sourceMap": false,
-        "allowSyntheticDefaultImports": true,
-        "allowJs": true,
-        "jsx": "react-native",
-        "isolatedModules": true,
-        "resolveJsonModule": true,
-        "types": ["react", "react-native", "node"],
-        "lib": [
-            "ES2021"
-        ],
-        "moduleResolution": "Node",
-        "noEmit": true,
+        "skipLibCheck": true,
         "strict": true,
-        "declaration": false
-    },
-    "exclude": [
-        "node_modules",
-        "babel.config.js",
-        "metro.config.js",
-        "jest.config.js",
-        ".bundle",
-        "__tests__",
-        "ios",
-        "android"
-    ],
-    "include": [
-        "src",
-    ]
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["./src/*"]
+        }
+    }
 }

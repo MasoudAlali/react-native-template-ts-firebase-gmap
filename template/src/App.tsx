@@ -1,12 +1,5 @@
-import React, {useCallback, useEffect} from "react";
-import {
-    KeyboardAvoidingView,
-    Linking,
-    Platform,
-    SafeAreaView as RNSafeAreaView,
-    StatusBar,
-    StyleSheet
-} from "react-native";
+import React, {useCallback} from "react";
+import {KeyboardAvoidingView, Platform, SafeAreaView as RNSafeAreaView, StatusBar, StyleSheet} from "react-native";
 import {persistor, store} from "./store";
 import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
@@ -16,7 +9,6 @@ import {NavigationContainer} from "@react-navigation/native";
 import {navigationRef} from "./navigators/Root";
 import {MainStack} from "./navigators/Main";
 import Modal from "./components/ui/Modal";
-import Logger, {LogKeys} from "./services/logger";
 import AnalyticService from "./services/analyticService";
 
 const SA = Platform.select<any>({
@@ -40,16 +32,6 @@ const App = () => {
         }
         routeNameRef.current = currentRouteName;
     }, []);
-
-    useEffect(() => {
-        Linking.addEventListener("url", handleOpenURL);
-
-        return Linking.removeAllListeners("url");
-    }, []);
-
-    const handleOpenURL = (event: any) => {
-        Logger.log(LogKeys.Component, {event});
-    };
 
     return (
         <Provider store={store}>

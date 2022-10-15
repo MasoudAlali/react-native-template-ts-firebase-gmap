@@ -3,11 +3,11 @@ import crashlytics from "@react-native-firebase/crashlytics";
 type LogTypes = "API" | "CACHE" | "COMPONENT" | "ERROR" | "OTHER";
 
 export const LogKeys: {
-	API: LogTypes;
-	Cache: LogTypes;
-	Component: LogTypes;
-	Other: LogTypes;
-	Error: LogTypes;
+    API: LogTypes;
+    Cache: LogTypes;
+    Component: LogTypes;
+    Other: LogTypes;
+    Error: LogTypes;
 } = {
     API: "API",
     Cache: "CACHE",
@@ -17,7 +17,7 @@ export const LogKeys: {
 };
 
 class Logger {
-    #_console: typeof global.console;
+    #_console: typeof console;
 
     constructor() {
         this.#_console = console;
@@ -61,10 +61,6 @@ class Logger {
         });
     }
 
-    assert(value?: any, ...messages: any) {
-        this.#_console.assert(value, ...messages);
-    }
-
     trace(key: LogTypes, ...messages: any) {
         if (this.hiddenLogs[key]) return;
 
@@ -75,10 +71,6 @@ class Logger {
         if (this.hiddenLogs[key]) return;
 
         this.#_console.debug(key, ...messages);
-    }
-
-    clear() {
-        this.#_console.clear();
     }
 
     table(...data: any[]) {

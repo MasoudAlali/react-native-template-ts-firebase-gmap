@@ -1,40 +1,40 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {combineReducers} from "redux";
 import {
-	FLUSH,
-	PAUSE,
-	PERSIST,
-	PersistConfig,
-	persistReducer,
-	persistStore,
-	PURGE,
-	REGISTER,
-	REHYDRATE
+    FLUSH,
+    PAUSE,
+    PERSIST,
+    PersistConfig,
+    persistReducer,
+    persistStore,
+    PURGE,
+    REGISTER,
+    REHYDRATE
 } from "redux-persist";
 import {configureStore} from "@reduxjs/toolkit";
 import user from "./user";
+import StorageService from "~/services/storageService";
 
 const reducers = combineReducers({
-	user,
+    user,
 });
 
 const persistConfig: PersistConfig<RootState> = {
-	key: "root",
-	storage: AsyncStorage,
-	blacklist: [],
+    key: "root",
+    storage: StorageService,
+    blacklist: [],
 };
 
 const persistedReducer = persistReducer<RootState>(persistConfig, reducers);
 
 const store = configureStore({
-	reducer: persistedReducer,
-	middleware: getDefaultMiddleware => {
-		return getDefaultMiddleware({
-			serializableCheck: {
-				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-			}
-		});
-	}
+    reducer: persistedReducer,
+    middleware: getDefaultMiddleware => {
+        return getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+            }
+        });
+    }
 });
 
 const persistor = persistStore(store);

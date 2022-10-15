@@ -1,7 +1,7 @@
 import StorageService from "./storageService";
 import qs from "qs";
 import Logger, { LogKeys } from "./logger";
-import { Minute } from "../config/timeConfig";
+import { Minute } from "~/config/timeConfig";
 
 class CacheService {
     #data: Nullable<Record<string, any>> = null;
@@ -11,7 +11,7 @@ class CacheService {
     }
 
     async #init() {
-        const d = await StorageService.get("@cache", {});
+        const d = await StorageService.getItem("@cache", {});
         this.#data = d || {};
     }
 
@@ -51,7 +51,7 @@ class CacheService {
     }
 
     #persist() {
-        StorageService.set("@cache", this.#data);
+        StorageService.setItem("@cache", this.#data);
     }
 
     async remove(key: string) {
