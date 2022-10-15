@@ -1,5 +1,5 @@
 import {Action, createSlice} from "@reduxjs/toolkit";
-import {ProfileInfo} from "../ts/ProfileTypes";
+import {ProfileInfo} from "~/types/ProfileTypes";
 
 export interface ProfileState {
     isLoggedIn: boolean | false,

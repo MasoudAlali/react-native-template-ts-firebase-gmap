@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 import {GestureResponderEvent, StyleProp, StyleSheet, Text, View, ViewStyle} from "react-native";
-import {Colors, FontSizes, LineHeights, Margins} from "../../config/ui";
+import {Colors, FontSizes, LineHeights, Margins} from "~/config/ui";
 
 interface Props {
     alignment: "center" | "right" | "left";

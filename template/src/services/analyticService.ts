@@ -5,10 +5,6 @@ class AnalyticService {
         this.#init();
     }
 
-    async #init() {
-        await analytics().logAppOpen();
-    }
-
     logLogin() {
         analytics().logLogin({
             method: "normal",
@@ -22,6 +18,10 @@ class AnalyticService {
                 screen_class: screenName,
             });
         }
+    }
+
+    async #init() {
+        await analytics().logAppOpen();
     }
 }
 

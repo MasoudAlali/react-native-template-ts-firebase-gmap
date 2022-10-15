@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 import {StyleSheet, Text, TouchableOpacity, TouchableOpacityProps} from "react-native";
-import {ActiveOpacity, Borders, Colors, FontSizes, Margins, Paddings} from "../../config/ui";
+import {ActiveOpacity, Borders, Colors, FontSizes, Margins, Paddings} from "~/config/ui";
 import Loading from "./Loading";
 
 export type ButtonType = "primary" | "secondary";

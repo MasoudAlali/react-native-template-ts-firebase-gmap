@@ -1,38 +1,27 @@
-import { AxiosError } from "axios";
+import {AxiosError} from "axios";
 import ToastService from "./toastService";
 
 export interface ErrorResponseType {
-	error: string;
+    error: string;
 }
 
 class ErrorHandler {
-    #messages: any[] = [];
-
     debounce: number = 15000;
-
     hiddenMessages: string[] = [];
-
     hiddenParts: string[] = [];
+    #messages: any[] = [];
 
     constructor() {
         this.#initIntervals();
     }
 
-    #purgeOldMessages = () => {
-        this.#messages = this.#messages.filter((i) => i.expiresIn > Date.now());
-    };
-
-    #initIntervals = () => {
-        setInterval(this.#purgeOldMessages, this.debounce);
-    };
-
     handleMessage = (errorMessage: string, forceShow: boolean = false) => {
         if (forceShow) return ToastService.showMessage("error", errorMessage);
 
         const shouldShow =
-			!this.hiddenMessages.includes(errorMessage) &&
-			!this.#messages.some((i) => i.message === errorMessage) &&
-			!this.hiddenParts.some((i) => errorMessage.includes(i));
+            !this.hiddenMessages.includes(errorMessage) &&
+            !this.#messages.some((i) => i.message === errorMessage) &&
+            !this.hiddenParts.some((i) => errorMessage.includes(i));
 
         if (!shouldShow) return null;
 
@@ -50,6 +39,14 @@ class ErrorHandler {
 
         if (message) this.handleMessage(message, forceShow);
     }
+
+    #purgeOldMessages = () => {
+        this.#messages = this.#messages.filter((i) => i.expiresIn > Date.now());
+    };
+
+    #initIntervals = () => {
+        setInterval(this.#purgeOldMessages, this.debounce);
+    };
 }
 
 export default new ErrorHandler();

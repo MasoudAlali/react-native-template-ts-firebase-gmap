@@ -1,10 +1,10 @@
 import React, {useCallback} from "react";
 import {StyleSheet, Text} from "react-native";
-import {Margins} from "../../config/ui";
-import Button from "../../components/ui/Button";
-import TextInput from "../../components/ui/TextInput";
-import PageContainer from "../../components/containers/PageContainer";
-import AuthService from "../../services/authService";
+import {Margins} from "~/config/ui";
+import Button from "~/components/ui/Button";
+import TextInput from "~/components/ui/TextInput";
+import PageContainer from "~/components/containers/PageContainer";
+import AuthService from "~/services/authService";
 
 const LoginPage = () => {
     const onPress = useCallback(() => {

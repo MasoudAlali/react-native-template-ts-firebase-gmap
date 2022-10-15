@@ -1,18 +1,13 @@
 import StorageService from "./storageService";
 import qs from "qs";
-import Logger, { LogKeys } from "./logger";
-import { Minute } from "~/config/timeConfig";
+import Logger, {LogKeys} from "./logger";
+import {Minute} from "~/config/timeConfig";
 
 class CacheService {
     #data: Nullable<Record<string, any>> = null;
 
     constructor() {
         this.#init();
-    }
-
-    async #init() {
-        const d = await StorageService.getItem("@cache", {});
-        this.#data = d || {};
     }
 
     async save(key: string, content: any, expireIn: number = 5 * Minute) {
@@ -50,10 +45,6 @@ class CacheService {
         return `${url}?${qs.stringify(params)}`;
     }
 
-    #persist() {
-        StorageService.setItem("@cache", this.#data);
-    }
-
     async remove(key: string) {
         delete this.#data?.[key];
         return this.#persist();
@@ -62,6 +53,15 @@ class CacheService {
     clear() {
         this.#data = {};
         this.#persist();
+    }
+
+    async #init() {
+        const d = await StorageService.getItem("@cache", {});
+        this.#data = d || {};
+    }
+
+    #persist() {
+        StorageService.setItem("@cache", this.#data);
     }
 }
 

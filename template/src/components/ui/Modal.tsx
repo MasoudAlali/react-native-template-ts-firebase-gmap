@@ -1,28 +1,28 @@
 import React, {memo, useEffect, useState} from "react";
-import { Modal as RNModal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { ActiveOpacity, Borders, Colors, FontSizes, FontWeights, HitSlop, Margins, Paddings } from "../../config/ui";
-import EventEmitter from "../../services/eventEmitter";
+import {Modal as RNModal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {ActiveOpacity, Borders, Colors, FontSizes, FontWeights, HitSlop, Margins, Paddings} from "~/config/ui";
+import EventEmitter from "~/services/eventEmitter";
 import Icon from "./Icon";
 import Button from "./Button";
 
 export interface ModalAction {
-	label: string;
-	type: "primary" | "secondary";
-	onClick: () => any;
+    label: string;
+    type: "primary" | "secondary";
+    onClick: () => any;
 }
 
 export interface ShowModalParams {
-	title?: string;
-	haveCancel?: boolean;
-	actions?: ModalAction[];
-	description?: string;
-	contentComponent?: any;
-	onCancel?: () => any;
+    title?: string;
+    haveCancel?: boolean;
+    actions?: ModalAction[];
+    description?: string;
+    contentComponent?: any;
+    onCancel?: () => any;
 }
 
 const Modal = () => {
-    const [ visible, setVisible ] = useState<boolean>(false);
-    const [ data, setData ] = useState<Nullable<ShowModalParams>>(null);
+    const [visible, setVisible] = useState<boolean>(false);
+    const [data, setData] = useState<Nullable<ShowModalParams>>(null);
 
     const showModal = () => {
         setVisible(true);
@@ -62,7 +62,11 @@ const Modal = () => {
     };
 
     return (
-        <RNModal animationType="fade" presentationStyle={"overFullScreen"} transparent={true} visible={!!data && visible}>
+        <RNModal
+            animationType="fade"
+            presentationStyle={"overFullScreen"}
+            transparent={true}
+            visible={!!data && visible}>
             <View style={styles.wrapper}>
                 <View style={styles.container}>
                     <View style={styles.headerContainer}>
@@ -79,7 +83,8 @@ const Modal = () => {
                     {!!data && visible && data?.contentComponent ? data?.contentComponent() : null}
                     <View style={styles.actionsContainer}>
                         {data?.haveCancel ? (
-                            <Button label={"Cancel"} onPress={_onCancel} type={"secondary"} style={styles.cancelButton}/>
+                            <Button label={"Cancel"} onPress={_onCancel} type={"secondary"}
+                                style={styles.cancelButton}/>
                         ) : null}
                         {data?.actions?.map((i: ModalAction) => (
                             <Button label={i.label} style={styles.actionButton} key={i.label} type={i.type}

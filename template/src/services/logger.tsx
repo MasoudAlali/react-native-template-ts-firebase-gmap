@@ -17,12 +17,6 @@ export const LogKeys: {
 };
 
 class Logger {
-    #_console: typeof console;
-
-    constructor() {
-        this.#_console = console;
-    }
-
     hiddenLogs: Record<string, boolean> = {
         [LogKeys.API]: true,
         [LogKeys.Error]: true,
@@ -30,6 +24,11 @@ class Logger {
         [LogKeys.Cache]: true,
         [LogKeys.Component]: true,
     };
+    #_console: typeof console;
+
+    constructor() {
+        this.#_console = console;
+    }
 
     log(key: LogTypes, ...messages: any) {
         if (this.hiddenLogs[key]) return;

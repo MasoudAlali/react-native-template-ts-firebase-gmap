@@ -1,4 +1,4 @@
-import { MonthName, WeekDayName } from "../ts/objects";
+import {MonthName, WeekDayName} from "~/types/objects";
 import moment from "moment";
 
 export const WeekDayNames = [

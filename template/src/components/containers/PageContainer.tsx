@@ -1,7 +1,7 @@
 import React, {memo, PropsWithChildren} from "react";
 import {ScrollView, StyleSheet, View} from "react-native";
 import {ScrollView as RGScrollView} from "react-native-gesture-handler";
-import {Colors, Paddings} from "../../config/ui";
+import {Colors, Paddings} from "~/config/ui";
 
 interface Props extends PropsWithChildren {
     Container?: typeof View | typeof ScrollView | typeof RGScrollView;

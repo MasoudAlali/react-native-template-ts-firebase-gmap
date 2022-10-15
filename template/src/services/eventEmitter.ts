@@ -1,4 +1,4 @@
-import Logger, { LogKeys } from "./logger";
+import Logger, {LogKeys} from "./logger";
 
 class EventEmitter {
     // It can be static
@@ -17,7 +17,7 @@ class EventEmitter {
     #events: Record<string, Function[]> = {};
 
     addListener = (eventName: string, handler: Function) => {
-        const { [eventName]: queue } = this.#events;
+        const {[eventName]: queue} = this.#events;
         const arr = queue || [];
         arr.push(handler);
         this.#events[eventName] = arr;
@@ -26,13 +26,13 @@ class EventEmitter {
     };
 
     removeListener = (eventName: string, handler: Function) => {
-        const { [eventName]: queue } = this.#events;
+        const {[eventName]: queue} = this.#events;
         const arr = queue || [];
         arr.splice(arr.indexOf(handler), 1);
     };
 
     emit = (eventName: string, payload?: any) => {
-        const { [eventName]: queue } = this.#events;
+        const {[eventName]: queue} = this.#events;
 
         (queue || []).map((i: Function) => {
             try {

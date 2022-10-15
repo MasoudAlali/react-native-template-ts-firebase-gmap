@@ -10,18 +10,18 @@ import {
     View,
     ViewStyle
 } from "react-native";
-import { Borders, Colors, FontSizes, FontWeights, Margins, Paddings } from "../../config/ui";
-import Icon, { IconFamilies } from "./Icon";
+import {Borders, Colors, FontSizes, FontWeights, Margins, Paddings} from "~/config/ui";
+import Icon, {IconFamilies} from "./Icon";
 
 interface Props extends TextInputProps {
-	label?: string;
-	containerStyle?: StyleProp<ViewStyle>;
-	labelStyle?: StyleProp<TextStyle>;
-	disabled?: boolean;
-	iconName?: string;
-	iconFamily?: IconFamilies;
-	iconSize?: number;
-	iconColor?: string;
+    label?: string;
+    containerStyle?: StyleProp<ViewStyle>;
+    labelStyle?: StyleProp<TextStyle>;
+    disabled?: boolean;
+    iconName?: string;
+    iconFamily?: IconFamilies;
+    iconSize?: number;
+    iconColor?: string;
 }
 
 const TextInput = ({
@@ -38,8 +38,8 @@ const TextInput = ({
     ...rest
 }: Props) => {
     return (
-        <View style={[ styles.container, containerStyle ]}>
-            {label ? <Text style={[ styles.label as TextStyle, labelStyle ]}>{label}</Text> : null}
+        <View style={[styles.container, containerStyle]}>
+            {label ? <Text style={[styles.label as TextStyle, labelStyle]}>{label}</Text> : null}
             <View style={iconName ? styles.insideContainerIcon : styles.insideContainer}>
                 {iconName ? (
                     <Icon
@@ -52,7 +52,7 @@ const TextInput = ({
                 ) : null}
                 <RNTI
                     editable={!disabled}
-                    style={[ iconName ? styles.iconInput : styles.input, style ]}
+                    style={[iconName ? styles.iconInput : styles.input, style]}
                     autoCapitalize={autoCapitalize}
                     {...rest}
                 />

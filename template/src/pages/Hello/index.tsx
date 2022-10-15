@@ -1,12 +1,15 @@
-import React, { useCallback } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Button from "../../components/ui/Button";
-import { navigate } from "../../navigators/Root";
-import { Margins } from "../../config/ui";
-import Header from "../../components/shared/Header";
-import PageContainer from "../../components/containers/PageContainer";
+import React, {useCallback} from "react";
+import {StyleSheet, Text, View} from "react-native";
+import Button from "~/components/ui/Button";
+import {Margins} from "~/config/ui";
+import Header from "~/components/shared/Header";
+import PageContainer from "~/components/containers/PageContainer";
+import {useNavigation} from "@react-navigation/native";
+import {RootStackParamList} from "~/navigators";
+import {StackNavigationProp} from "@react-navigation/stack";
 
 const Hello = () => {
+    const {navigate} = useNavigation<StackNavigationProp<RootStackParamList>>();
     const onPress = useCallback(() => {
         navigate("Sample", {
             title: "Sample Page"

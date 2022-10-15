@@ -1,18 +1,11 @@
 import React, {memo, ReactNode} from "react";
 import {GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View, ViewStyle} from "react-native";
-import {
-    ActiveOpacity,
-    Colors,
-    FontSizes,
-    FontWeights,
-    HitSlop,
-    IconSizes,
-    LineHeights,
-    Paddings,
-} from "../../config/ui";
+import {ActiveOpacity, Colors, FontSizes, FontWeights, HitSlop, IconSizes, LineHeights, Paddings,} from "~/config/ui";
 import Icon from "../ui/Icon";
 import Loading from "../ui/Loading";
-import {navigateBack} from "../../navigators/Root";
+import {useNavigation} from "@react-navigation/native";
+import {StackNavigationProp} from "@react-navigation/stack";
+import {RootStackParamList} from "~/navigators";
 
 interface Props {
     title: string;
@@ -37,12 +30,14 @@ const Header = ({
     onTitlePress,
     style,
 }: Props) => {
+    const {goBack} = useNavigation<StackNavigationProp<RootStackParamList>>();
+
     return (
         <View style={[styles.container, style]}>
             {LeftComponent ? (
                 LeftComponent
             ) : hasBackButton ? (
-                <TouchableOpacity hitSlop={HitSlop} activeOpacity={ActiveOpacity} onPress={navigateBack}>
+                <TouchableOpacity hitSlop={HitSlop} activeOpacity={ActiveOpacity} onPress={goBack}>
                     <Icon name={"chevron-left"} family={"mi"} size={IconSizes.normal}/>
                 </TouchableOpacity>
             ) : (

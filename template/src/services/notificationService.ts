@@ -1,4 +1,4 @@
-import messaging, { FirebaseMessagingTypes } from "@react-native-firebase/messaging";
+import messaging, {FirebaseMessagingTypes} from "@react-native-firebase/messaging";
 import EventEmitter from "./eventEmitter";
 
 class NotificationService {
@@ -24,23 +24,11 @@ class NotificationService {
         messaging().onTokenRefresh(listener);
     }
 
-    #onNotificationOpenedApp(message: FirebaseMessagingTypes.RemoteMessage) {
-        EventEmitter.emit(EventEmitter.Events.Firebase.NotificationAppOpen, message);
-    }
-
-    #onMessage(message: FirebaseMessagingTypes.RemoteMessage) {
-        EventEmitter.emit(EventEmitter.Events.Firebase.Message, message);
-    }
-
-    #onTokenRefresh(token: string) {
-        EventEmitter.emit(EventEmitter.Events.Firebase.TokenRefresh, token);
-    }
-
     setBackgroundMessageHandler(handler: (message: FirebaseMessagingTypes.RemoteMessage) => Promise<any>) {
         messaging().setBackgroundMessageHandler(handler);
     }
 
-    getAPNSToken() : Promise<string | null> {
+    getAPNSToken(): Promise<string | null> {
         return messaging().getAPNSToken();
     }
 
@@ -52,8 +40,20 @@ class NotificationService {
         const authStatus = await messaging().requestPermission();
         return (
             authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-			authStatus === messaging.AuthorizationStatus.PROVISIONAL
+            authStatus === messaging.AuthorizationStatus.PROVISIONAL
         );
+    }
+
+    #onNotificationOpenedApp(message: FirebaseMessagingTypes.RemoteMessage) {
+        EventEmitter.emit(EventEmitter.Events.Firebase.NotificationAppOpen, message);
+    }
+
+    #onMessage(message: FirebaseMessagingTypes.RemoteMessage) {
+        EventEmitter.emit(EventEmitter.Events.Firebase.Message, message);
+    }
+
+    #onTokenRefresh(token: string) {
+        EventEmitter.emit(EventEmitter.Events.Firebase.TokenRefresh, token);
     }
 }
 

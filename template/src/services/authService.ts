@@ -1,5 +1,5 @@
-import {store} from "../store";
-import {userLoggedIn, userLoggedOut} from "../store/user";
+import {store} from "~/store";
+import {userLoggedIn, userLoggedOut} from "~/store/user";
 import UiService from "./uiService";
 import AnalyticService from "./analyticService";
 
@@ -9,7 +9,7 @@ class AuthService {
         store.dispatch(userLoggedOut());
     }
 
-    loginUser({ token, refreshToken }: { token: string; refreshToken: string }) {
+    loginUser({token, refreshToken}: { token: string; refreshToken: string }) {
         store.dispatch(
             userLoggedIn({
                 token,
@@ -20,7 +20,7 @@ class AuthService {
         AnalyticService.logLogin();
     }
 
-    refreshUserToken({ token, refreshToken }: { token: string; refreshToken: string }) {
+    refreshUserToken({token, refreshToken}: { token: string; refreshToken: string }) {
         store.dispatch(
             userLoggedIn({
                 token,

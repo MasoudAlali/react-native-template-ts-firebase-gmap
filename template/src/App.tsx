@@ -5,9 +5,8 @@ import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
-import {NavigationContainer} from "@react-navigation/native";
-import {navigationRef} from "./navigators/Root";
-import {MainStack} from "./navigators/Main";
+import {NavigationContainer, NavigationContainerRef} from "@react-navigation/native";
+import {MainStack, RootStackParamList} from "./navigators";
 import Modal from "./components/ui/Modal";
 import AnalyticService from "./services/analyticService";
 
@@ -18,6 +17,7 @@ const SA = Platform.select<any>({
 
 const App = () => {
     const routeNameRef = React.useRef<string>();
+    const navigationRef = React.createRef<NavigationContainerRef<RootStackParamList>>();
 
     const onReady = useCallback(() => {
         routeNameRef.current = navigationRef.current?.getCurrentRoute()?.name;

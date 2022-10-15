@@ -1,6 +1,6 @@
-import api from "../services/api";
-import {apiEndpoints} from "../config/urlConfigs";
-import AuthService from "../services/authService";
+import api from "~/services/api";
+import {apiEndpoints} from "~/config/urlConfigs";
+import AuthService from "~/services/authService";
 import {AxiosError} from "axios";
 
 class AuthRequests {

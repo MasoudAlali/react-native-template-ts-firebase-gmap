@@ -1,4 +1,4 @@
-import { ShowModalParams } from "../components/ui/Modal";
+import {ShowModalParams} from "~/components/ui/Modal";
 import EventEmitter from "./eventEmitter";
 
 class UiService {

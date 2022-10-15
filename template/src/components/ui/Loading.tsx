@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import {Bar, Circle, Pie} from "react-native-progress";
 import {StyleProp, StyleSheet, View, ViewStyle} from "react-native";
-import {Colors} from "../../config/ui";
+import {Colors} from "~/config/ui";
 
 interface Props {
     fullScreen?: boolean;
