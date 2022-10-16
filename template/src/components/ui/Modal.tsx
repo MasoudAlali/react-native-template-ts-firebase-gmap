@@ -1,6 +1,6 @@
 import React, {memo, useEffect, useState} from "react";
 import {Modal as RNModal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {ActiveOpacity, Borders, Colors, FontSizes, FontWeights, HitSlop, Margins, Paddings} from "~/config/ui";
+import {ActiveOpacity, Borders, Colors, FontSizes, FontWeights, HitSlop, Margins, Paddings} from "~/constants";
 import EventEmitter from "~/services/eventEmitter";
 import Icon from "./Icon";
 import Button from "./Button";

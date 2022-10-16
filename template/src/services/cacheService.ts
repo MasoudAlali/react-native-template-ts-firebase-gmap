@@ -1,7 +1,7 @@
 import StorageService from "./storageService";
 import qs from "qs";
 import Logger, {LogKeys} from "./logger";
-import {Minute} from "~/config/timeConfig";
+import {Minute} from "~/constants";
 
 class CacheService {
     #data: Nullable<Record<string, any>> = null;

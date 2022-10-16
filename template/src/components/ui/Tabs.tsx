@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {ScrollView, StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle} from "react-native";
-import {ActiveOpacity, Colors, FontSizes, FontWeights, HitSlop, Margins, Paddings} from "~/config/ui";
+import {ActiveOpacity, Colors, FontSizes, FontWeights, HitSlop, Margins, Paddings} from "~/constants";
 
 interface Props {
     labels: string[];

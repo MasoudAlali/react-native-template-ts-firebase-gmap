@@ -10,7 +10,7 @@ import {
     View,
     ViewStyle
 } from "react-native";
-import {Borders, Colors, FontSizes, FontWeights, Margins, Paddings} from "~/config/ui";
+import {Borders, Colors, FontSizes, FontWeights, Margins, Paddings} from "~/constants";
 import Icon, {IconFamilies} from "./Icon";
 
 interface Props extends TextInputProps {

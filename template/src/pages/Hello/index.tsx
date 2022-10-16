@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 import {StyleSheet, Text, View} from "react-native";
 import Button from "~/components/ui/Button";
-import {Margins} from "~/config/ui";
+import {Margins} from "~/constants";
 import Header from "~/components/shared/Header";
 import PageContainer from "~/components/containers/PageContainer";
 import {useNavigation} from "@react-navigation/native";

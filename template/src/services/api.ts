@@ -1,5 +1,5 @@
 import axios, {AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponse, AxiosResponseHeaders} from "axios";
-import {baseApiUrl} from "~/config/urlConfigs";
+import {baseApiUrl} from "~/constants";
 import CacheService from "./cacheService";
 import Logger, {LogKeys} from "./logger";
 import ErrorHandler, {ErrorResponseType} from "./errorHandler";

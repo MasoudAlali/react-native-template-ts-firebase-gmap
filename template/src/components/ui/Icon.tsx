@@ -2,7 +2,7 @@ import React, {memo} from "react";
 import MiIcon from "react-native-vector-icons/MaterialIcons";
 import FaIcon from "react-native-vector-icons/FontAwesome";
 import MdiIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import {Colors, IconSizes} from "~/config/ui";
+import {Colors, IconSizes} from "~/constants";
 import {StyleProp, ViewStyle} from "react-native";
 
 export type IconFamilies = "mdi" | "fa" | "mi";

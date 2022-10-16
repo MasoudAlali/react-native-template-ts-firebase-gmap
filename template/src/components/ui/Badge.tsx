@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from "react-native";
-import {Borders, Colors, FontSizes, FontWeights, Paddings} from "~/config/ui";
+import {Borders, Colors, FontSizes, FontWeights, Paddings} from "~/constants";
 
 interface Props {
     label: string;

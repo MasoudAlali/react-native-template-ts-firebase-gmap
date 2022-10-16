@@ -1,6 +1,6 @@
 import React, {memo, ReactNode} from "react";
 import {GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View, ViewStyle} from "react-native";
-import {ActiveOpacity, Colors, FontSizes, FontWeights, HitSlop, IconSizes, LineHeights, Paddings,} from "~/config/ui";
+import {ActiveOpacity, Colors, FontSizes, FontWeights, HitSlop, IconSizes, LineHeights, Paddings,} from "~/constants";
 import Icon from "../ui/Icon";
 import Loading from "../ui/Loading";
 import {useNavigation} from "@react-navigation/native";

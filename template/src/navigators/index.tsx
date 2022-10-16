@@ -4,7 +4,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {useSelector} from "react-redux";
 import EventEmitter from "~/services/eventEmitter";
 import {RootState} from "~/store";
-import {Colors} from "~/config/ui";
+import {Colors} from "~/constants";
 import Sample from "~/pages/Sample";
 import Hello from "~/pages/Hello";
 import LoginPage from "~/pages/Login";

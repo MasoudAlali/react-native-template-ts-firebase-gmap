@@ -1,5 +1,5 @@
 import api from "~/services/api";
-import {apiEndpoints} from "~/config/urlConfigs";
+import {apiEndpoints} from "~/constants";
 import AuthService from "~/services/authService";
 import {AxiosError} from "axios";
 
