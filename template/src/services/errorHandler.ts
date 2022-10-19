@@ -9,7 +9,7 @@ class ErrorHandler {
     debounce: number = 15000;
     hiddenMessages: string[] = [];
     hiddenParts: string[] = [];
-    #messages: any[] = [];
+    private _messages: any[] = [];
 
     constructor() {
         this.#initIntervals();
@@ -20,12 +20,12 @@ class ErrorHandler {
 
         const shouldShow =
             !this.hiddenMessages.includes(errorMessage) &&
-            !this.#messages.some((i) => i.message === errorMessage) &&
+            !this._messages.some((i) => i.message === errorMessage) &&
             !this.hiddenParts.some((i) => errorMessage.includes(i));
 
         if (!shouldShow) return null;
 
-        this.#messages.push({
+        this._messages.push({
             message: errorMessage,
             expiresIn: Date.now() + this.debounce,
         });
@@ -41,7 +41,7 @@ class ErrorHandler {
     }
 
     #purgeOldMessages = () => {
-        this.#messages = this.#messages.filter((i) => i.expiresIn > Date.now());
+        this._messages = this._messages.filter((i) => i.expiresIn > Date.now());
     };
 
     #initIntervals = () => {

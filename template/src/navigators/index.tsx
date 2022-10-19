@@ -5,9 +5,9 @@ import {useSelector} from "react-redux";
 import EventEmitter from "~/services/eventEmitter";
 import {RootState} from "~/store";
 import {Colors} from "~/constants";
-import Sample from "~/pages/Sample";
-import Hello from "~/pages/Hello";
-import LoginPage from "~/pages/Login";
+import Sample from "~/screens/Sample";
+import Hello from "~/screens/Hello";
+import LoginPage from "~/screens/Login";
 import Icon from "~/components/ui/Icon";
 
 export type RootStackParamList = {

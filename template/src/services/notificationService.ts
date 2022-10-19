@@ -3,9 +3,9 @@ import EventEmitter from "./eventEmitter";
 
 class NotificationService {
     enableEmitEvents() {
-        this.onNotificationOpenedApp(this.#onNotificationOpenedApp);
-        this.onMessage(this.#onMessage);
-        this.onTokenRefresh(this.#onTokenRefresh);
+        this.onNotificationOpenedApp(this._onNotificationOpenedApp);
+        this.onMessage(this._onMessage);
+        this.onTokenRefresh(this._onTokenRefresh);
     }
 
     getInitialNotification(): Promise<FirebaseMessagingTypes.RemoteMessage | null> {
@@ -44,15 +44,15 @@ class NotificationService {
         );
     }
 
-    #onNotificationOpenedApp(message: FirebaseMessagingTypes.RemoteMessage) {
+    private _onNotificationOpenedApp(message: FirebaseMessagingTypes.RemoteMessage) {
         EventEmitter.emit(EventEmitter.Events.Firebase.NotificationAppOpen, message);
     }
 
-    #onMessage(message: FirebaseMessagingTypes.RemoteMessage) {
+    private _onMessage(message: FirebaseMessagingTypes.RemoteMessage) {
         EventEmitter.emit(EventEmitter.Events.Firebase.Message, message);
     }
 
-    #onTokenRefresh(token: string) {
+    private _onTokenRefresh(token: string) {
         EventEmitter.emit(EventEmitter.Events.Firebase.TokenRefresh, token);
     }
 }

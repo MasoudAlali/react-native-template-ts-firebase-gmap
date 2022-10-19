@@ -4,37 +4,37 @@ import Logger, {LogKeys} from "./logger";
 import {Minute} from "~/constants";
 
 class CacheService {
-    #data: Nullable<Record<string, any>> = null;
+    private _data: Nullable<Record<string, any>> = null;
 
     constructor() {
-        this.#init();
+        this._init();
     }
 
     async save(key: string, content: any, expireIn: number = 5 * Minute) {
         Logger.log(LogKeys.Cache, "Saving ", key, expireIn);
 
-        if (!this.#data) await this.#init();
-        if (!this.#data) return;
+        if (!this._data) await this._init();
+        if (!this._data) return;
 
-        this.#data[key] = {
+        this._data[key] = {
             content,
             expireTime: Date.now() + expireIn * 1000,
         };
-        this.#persist();
+        this._persist();
     }
 
     async get(key: string) {
-        if (!this.#data) await this.#init();
+        if (!this._data) await this._init();
 
-        const d = this.#data?.[key];
+        const d = this._data?.[key];
 
         Logger.log(LogKeys.Cache, "Reading", key, !!d && d.expireTime >= Date.now());
 
         if (!d) return null;
 
         if (d.expireTime < Date.now()) {
-            delete this.#data?.[key];
-            this.#persist();
+            delete this._data?.[key];
+            this._persist();
             return null;
         }
 
@@ -46,22 +46,22 @@ class CacheService {
     }
 
     async remove(key: string) {
-        delete this.#data?.[key];
-        return this.#persist();
+        delete this._data?.[key];
+        return this._persist();
     }
 
     clear() {
-        this.#data = {};
-        this.#persist();
+        this._data = {};
+        this._persist();
     }
 
-    async #init() {
+    private async _init() {
         const d = await StorageService.getItem("@cache", {});
-        this.#data = d || {};
+        this._data = d || {};
     }
 
-    #persist() {
-        StorageService.setItem("@cache", this.#data);
+    private _persist() {
+        StorageService.setItem("@cache", this._data);
     }
 }
 

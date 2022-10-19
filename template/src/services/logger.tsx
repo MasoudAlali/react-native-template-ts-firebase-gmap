@@ -24,34 +24,34 @@ class Logger {
         [LogKeys.Cache]: true,
         [LogKeys.Component]: true,
     };
-    #_console: typeof console;
+    private _console: typeof console;
 
     constructor() {
-        this.#_console = console;
+        this._console = console;
     }
 
     log(key: LogTypes, ...messages: any) {
         if (this.hiddenLogs[key]) return;
 
-        this.#_console.log(key, ...messages);
+        this._console.log(key, ...messages);
     }
 
     warn(key: LogTypes, ...messages: any) {
         if (this.hiddenLogs[key]) return;
 
-        this.#_console.warn(key, ...messages);
+        this._console.warn(key, ...messages);
     }
 
     info(key: LogTypes, ...messages: any) {
         if (this.hiddenLogs[key]) return;
 
-        this.#_console.info(key, ...messages);
+        this._console.info(key, ...messages);
     }
 
     error(key: LogTypes, ...messages: any) {
         if (this.hiddenLogs[key]) return;
 
-        this.#_console.error(key, ...messages);
+        this._console.error(key, ...messages);
 
         (messages || []).map((i: any) => {
             if (i instanceof Error) {
@@ -63,29 +63,29 @@ class Logger {
     trace(key: LogTypes, ...messages: any) {
         if (this.hiddenLogs[key]) return;
 
-        this.#_console.trace(key, ...messages);
+        this._console.trace(key, ...messages);
     }
 
     debug(key: LogTypes, ...messages: any) {
         if (this.hiddenLogs[key]) return;
 
-        this.#_console.debug(key, ...messages);
+        this._console.debug(key, ...messages);
     }
 
     table(...data: any[]) {
-        this.#_console.table(...data);
+        this._console.table(...data);
     }
 
     groupCollapsed(label?: string) {
-        this.#_console.groupCollapsed(label);
+        this._console.groupCollapsed(label);
     }
 
     groupEnd() {
-        this.#_console.groupEnd();
+        this._console.groupEnd();
     }
 
     group(label?: string) {
-        this.#_console.group(label);
+        this._console.group(label);
     }
 }
 

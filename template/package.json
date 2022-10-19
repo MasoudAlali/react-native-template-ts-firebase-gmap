@@ -14,13 +14,22 @@
     "babel": {
         "plugins": [
             [
+                "module-resolver",
+                {
+                    "root": ["./"],
+                    "alias": {
+                        "^~/(.+)": "./src/\\1"
+                    }
+                }
+            ],
+            [
                 "@babel/plugin-proposal-decorators",
                 {
                     "legacy": true
                 }
             ],
             [
-                "@babel/proposal-private-methods",
+                "@babel/plugin-proposal-private-methods",
                 {
                     "loose": true
                 }

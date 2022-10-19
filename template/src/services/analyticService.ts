@@ -2,7 +2,7 @@ import analytics from "@react-native-firebase/analytics";
 
 class AnalyticService {
     constructor() {
-        this.#init();
+        this._init();
     }
 
     logLogin() {
@@ -20,7 +20,7 @@ class AnalyticService {
         }
     }
 
-    async #init() {
+    private async _init() {
         await analytics().logAppOpen();
     }
 }
