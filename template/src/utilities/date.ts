@@ -30,7 +30,7 @@ export const convertDateTimeToTime = (datetime: string | Date) => {
     if (!datetime) return "-";
 
     const date = new Date(datetime);
-    return `${("0" + date.getHours()).substr(-2)}:${("0" + date.getMinutes()).substr(-2)}`;
+    return `${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
 };
 
 export const convertDateTimeToDate = (datetime?: string | Date, short: boolean = false) => {
@@ -41,7 +41,7 @@ export const convertDateTimeToDate = (datetime?: string | Date, short: boolean =
 
     return short
         ? mDate.format("MMM DD")
-        : `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).substr(-2)}-${("0" + date.getDate()).substr(-2)}`;
+        : `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 };
 
 export const getTimeDiff = (time: Date | string) => {
