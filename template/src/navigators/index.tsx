@@ -2,7 +2,6 @@ import React from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createStackNavigator} from "@react-navigation/stack";
 import {useSelector} from "react-redux";
-import EventEmitter from "~/services/eventEmitter";
 import {RootState} from "~/store";
 import {Colors} from "~/constants";
 import Sample from "~/screens/Sample";
@@ -65,11 +64,6 @@ export const MainStack = () => {
 
     return (
         <MainStackNavigator.Navigator
-            screenListeners={{
-                blur: () => {
-                    EventEmitter.emit("CloseEverything");
-                },
-            }}
             screenOptions={{
                 headerShown: false,
                 cardStyle: {

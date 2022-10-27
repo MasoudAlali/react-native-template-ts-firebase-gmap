@@ -6,6 +6,7 @@ class EventEmitter {
         General: {
             ShowModal: "general-show-modal",
             HideModal: "general-hide-modal",
+            PageChanged: "general-navigation-page-changed"
         },
         Firebase: {
             NotificationAppOpen: "firebase-notification-app-open",
