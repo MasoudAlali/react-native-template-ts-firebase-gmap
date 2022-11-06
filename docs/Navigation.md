@@ -30,8 +30,4 @@ interface Props extends CompositeScreenProps<StackScreenProps<RootStackParamList
     * `TabStack` which contains all `BottomTab` screens
     * `MainStack` which contains all `Stack` screens
       * it also handles `LoggedIn` state by setting `initialRouteName`
-* `Typescript` props of screens:
-```typescript
-interface Props extends CompositeScreenProps<StackScreenProps<RootStackParamList, "Sample">, any> {
-}
-```
+
