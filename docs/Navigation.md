@@ -16,20 +16,6 @@ interface Props extends CompositeScreenProps<StackScreenProps<RootStackParamList
 
 ##### Structure
 
-* `Root.tsx` which contain some `refs` and `methods` to use navigations more easily
-    * `navigationRef` is default `Navigator` and base to call methods
-    * `navigateBack` handles navigation to previous screen
-      ```typescript
-      const navigateBack = () => void;
-      ```
-    * `navigate` handles navigation to some screen with specific params
-      ```typescript
-      const navigate = (name: string, params: any = {}) => void;
-      ```
-    * `navigateAndReset` handles resetting main stack with some `routes` initial state
-      ```typescript
-      const navigateAndReset = (routes: any[] = [], index: number = 0) => void;
-      ```
 * `Main.tsx` which is used to define screens and params
     * You should define your screens and their params in `RootStackParamList`
       ```typescript
@@ -44,3 +30,8 @@ interface Props extends CompositeScreenProps<StackScreenProps<RootStackParamList
     * `TabStack` which contains all `BottomTab` screens
     * `MainStack` which contains all `Stack` screens
       * it also handles `LoggedIn` state by setting `initialRouteName`
+* `Typescript` props of screens:
+```typescript
+interface Props extends CompositeScreenProps<StackScreenProps<RootStackParamList, "Sample">, any> {
+}
+```
