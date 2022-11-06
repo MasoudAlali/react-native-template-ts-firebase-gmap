@@ -11,12 +11,21 @@
 * Remove google maps dependencies
     * `react-native-maps`
 * Comment below lines in your `ios/Podfile`:
-    * [11] `rn_maps_path = '../node_modules/react-native-maps'`
-    * [20] `pod 'react-native-google-maps', :path => rn_maps_path`
-    * [38-45]
+```diff
+- rn_maps_path = '../node_modules/react-native-maps'
+- pod 'react-native-google-maps', :path => rn_maps_path
+```
+
 * Reinstall your pods (`npx pod-install`)
 * Comment below lines in your `ios/[project-name]/AppDelegate.mm`:
-    * [9] `#import <GoogleMaps/GoogleMaps.h>`
-    * [37] `[GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];`
-* Comment lines `[26-28]` in your `android/app/src/main/AndroidManifest.xml`:
+```diff
+- #import <GoogleMaps/GoogleMaps.h>
+- [GMSServices provideAPIKey:@"GOOGLE_MAPS_API_KEY"];
+```
+* Comment below lines in your `android/app/src/main/AndroidManifest.xml`:
+```diff
+- <meta-data
+-       android:name="com.google.android.geo.API_KEY"
+-       android:value="GOOGLE_MAPS_API_KEY" />
+```
 
