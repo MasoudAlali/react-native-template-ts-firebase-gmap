@@ -1,0 +1,59 @@
+default_platform(:ios)
+
+before_all do
+end
+
+platform :ios do
+  scheme = "ProjectName"
+  podfile = "./ios/Podfile"
+  configuration = "Release"
+  output_folder = "./build/ios"
+  ios_xcodeproj_path = './ios/ProjectName.xcodeproj'
+  ios_xcworkspace_path = './ios/ProjectName.xcworkspace'
+  export_method = 'ad-hoc'
+
+   desc 'Build the iOS application.'
+   lane :build do |options|
+        cocoapods(
+            podfile: podfile
+        )
+        update_code_signing_settings(
+           use_automatic_signing: true,
+           path: ios_xcodeproj_path
+        )
+
+        gym(
+           scheme: "ProjectName",
+           workspace: ios_xcworkspace_path,
+           output_directory: output_folder,
+           export_method: export_method,
+           xcargs: '-allowProvisioningUpdates',
+           export_xcargs: "-allowProvisioningUpdates",
+           output_name: "ProjectName",
+           silent: true,
+           clean: true,
+           configuration: configuration,
+           export_options: {
+                method: export_method
+           },
+           include_bitcode: true,
+           include_symbols: false,
+           catalyst_platform: "macos",
+        )
+   end
+end
+
+platform :android do
+    desc 'Build the Android application.'
+    lane :build do
+      gradle(task: 'clean', project_dir: 'android/')
+      gradle(
+        task: 'app:assemble',
+        build_type: 'Release',
+        project_dir: 'android/',
+      )
+      sh('mkdir -p ../build/android')
+      sh('mv ../android/app/build/outputs/apk/release/app-release.apk ../build/android')
+    end
+end
+
