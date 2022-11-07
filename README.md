@@ -9,8 +9,13 @@ always take time,
 so basically that's why I created this template
 
 ***
+
 ##### Feedback and comments are always welcome
-Of course, this isn't the perfect structure, but It's inspired by NextJS and recommended typescript structure, which will separate components in terms of features, and root pages with some Navigation (which won't be present in NextJS based on its directory routing), and separating services and have wrappers to handle better future changes in dependencies<br/>
+
+Of course, this isn't the perfect structure, but It's inspired by NextJS and recommended typescript structure, which
+will separate components in terms of features, and root pages with some Navigation (which won't be present in NextJS
+based on its directory routing), and separating services and have wrappers to handle better future changes in
+dependencies<br/>
 So Please don't hesitate to send me comments and feedback. we can talk about each part and make it better.
 ***
 
@@ -72,7 +77,8 @@ So Please don't hesitate to send me comments and feedback. we can talk about eac
 react-native init [project-name] --template https://github.com/MasoudAlali/react-native-ts-fb-template
 ```
 
-* #### Configure [Firebase](https://rnfirebase.io/)
+#### Configure [Firebase](https://rnfirebase.io/)
+
 * Configure your project in [Firebase Console](https://console.firebase.google.com)
 * Download your `GoogleService-Info.plist` and replace (overwrite) it in `ios` directory
 * Download your `google-services.json` and replace (overwrite) it in `android/app` directory
@@ -82,7 +88,8 @@ you can add or remove any module based on RN Firebase documentation
 
 * ###### for more information about firebase module and how to remove it refer to [Firebase Doc](./docs/Firebase.md)
 
-* #### Configure [Google Maps](https://github.com/react-native-maps/react-native-maps)
+#### Configure [Google Maps](https://github.com/react-native-maps/react-native-maps)
+
 * Configure your project in [Google Cloud Panel](https://cloud.google.com)
     * Be sure that you enable Android Maps SDK and iOS Maps SDK
 * Replace retrieved token and replace to below files:
@@ -100,6 +107,23 @@ you can add or remove any module based on RN Firebase documentation
 * To use auth service requests (`login`, `refreshToken`)[^1] you can set your endpoints in
   `config/urlConfigs.ts` -> `apiEndpoints` and set `baseApiUrl`
 * To handle your own logic of `login` and `refreshToken` you can modify methods in `api/authRequests.ts`
+
+### Build App
+
+It's base on [Fastlane](https://fastlane.tools/) which is simply ruby tool to automate some tasks, it also supports lots
+of plugins, so you can integrate it easily to different services
+
+* iOS build:
+
+```shell
+[bundle exec] fastlane ios build
+```
+
+* Android build:
+
+```shell
+[bundle exec] fastlane android build
+```
 
 ### Provided Services
 
