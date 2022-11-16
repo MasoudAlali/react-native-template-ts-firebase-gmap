@@ -1,8 +1,8 @@
 {
-  "name": "react-native-ts-fb-template",
+  "name": "react-native-template-ts-firebase-gmap",
   "version": "0.0.1",
   "description": "React Native Template with TS, Firebase, Google Maps, Navigation, Vector Icons, ...",
-  "repository": "git@github.com:MasoudAlali/react-native-ts-fb-template.git",
+  "repository": "git@github.com:MasoudAlali/react-native-template-ts-firebase-gmap.git",
   "author": "Masoud Alali <masoud.alali.94@gmail.com>",
   "license": "MIT"
 }
